@@ -2,3 +2,4 @@
 	path = data
 	url = git@github.com:ConorMurphy21/ConnectionsData.git
    branch = master
+   remote = origin
