@@ -26,8 +26,8 @@ Alternatively installing wsl2 is relatively easy and should work like a charm.
 
 
 
-To retrieve the repository run:
-`git clone git@github.com:ConorMurphy21/Connections.git` in 
+To retrieve the repository run:  
+`git clone --recurse-submodules git@github.com:ConorMurphy21/Connections.git` in 
 the directory you would like to install it to.
 
 

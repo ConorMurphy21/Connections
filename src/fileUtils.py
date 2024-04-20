@@ -1,8 +1,12 @@
 from pathlib import Path
 
-GAMES_FOLDER = Path('./games')
+BASE_PATH = Path(__file__).parent.parent
 
-RESULTS_FOLDER = Path('./results')
+DATA_PATH = BASE_PATH / Path('data')
+
+GAMES_FOLDER = DATA_PATH / Path('games')
+
+RESULTS_FOLDER = DATA_PATH / Path('results')
 
 
 def get_game_filename(author: str, number: int) -> Path:
