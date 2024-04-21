@@ -6,7 +6,7 @@ from src.fileUtils import get_logfile_dir
 from src.game import Game
 from src.gameFinder import find_game
 from src.generator import generate_con_file
-from src.gitUtils import save_to_git, ensure
+from src.gitUtils import save_to_git, ensure_submodule
 from src.logger import setup_logger
 from src.userConfig import get_user_config
 
