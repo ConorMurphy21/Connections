@@ -5,8 +5,6 @@ from types import SimpleNamespace
 from src.fileUtils import get_game_filename, GAMES_FOLDER, get_author_folder, get_machine_logfile
 from pathlib import Path
 
-from src.gitUtils import pull_master
-
 
 def get_game_status(logfile: Path):
     if not logfile.exists():
