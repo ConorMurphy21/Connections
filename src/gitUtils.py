@@ -25,7 +25,7 @@ def save_to_git(args, user_config, file):
     else:
         subprocess.call(['git', 'commit', '-q', '-m', f'{user_config.username} played a game!'], cwd=DATA_PATH)
 
-    subprocess.run(['git', 'push'], cwd=DATA_PATH)
+    subprocess.run(['git', 'push', '-q'], cwd=DATA_PATH)
     result = subprocess.run(['git', 'status'], cwd=DATA_PATH, capture_output=True, text=True).stdout
     if 'nothing to commit' not in result:
         print('Something went wrong syncing with the cloud :(')
