@@ -4,7 +4,7 @@ from src.fileUtils import DATA_PATH, BASE_PATH
 
 def ensure_submodule():
     subprocess.call(['git', 'submodule', 'update', '--init', '-q'], cwd=BASE_PATH)
-    subprocess.call(['git', 'stash', '-q'] cwd=DATA_PATH)
+    subprocess.call(['git', 'stash', '-q'], cwd=DATA_PATH)
     subprocess.call(['git', 'checkout', 'master', '-q'], cwd=DATA_PATH)
     subprocess.call(['git', 'pull', '--rebase', '--autostash', '-q'], cwd=DATA_PATH)
 
