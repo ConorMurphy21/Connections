@@ -1,4 +1,4 @@
-import subprocess
+mport subprocess
 
 from src.fileUtils import DATA_PATH
 
@@ -19,7 +19,7 @@ def save_to_git(args, user_config, file):
     print('syncing game files to the cloud...')
     _ensure_submodule()
     subprocess.call(['git', 'pull', '--rebase', '--autostash', '-q'], cwd=DATA_PATH)
-    subprocess.call(['git', 'add', file, '-q'], cwd=DATA_PATH)
+    subprocess.call(['git', 'add', file], cwd=DATA_PATH)
     if args.generate:
         subprocess.call(['git', 'commit', '-q', '-m', f'{user_config.username} generated new game!'], cwd=DATA_PATH)
     else:
