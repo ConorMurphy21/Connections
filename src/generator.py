@@ -2,6 +2,7 @@ import json
 import os
 
 from src.fileUtils import get_game_filename, get_author_folder
+from src.gitUtils import pull_master
 
 
 def get_last_number(user_config) -> int:
@@ -27,6 +28,7 @@ def generate_con_file(user_config):
                 game_config.append(row)
                 break
 
+    pull_master()
     last_number = get_last_number(user_config)
     filename = get_game_filename(user_config.username, last_number + 1)
     filename.parent.mkdir(exist_ok=True)
