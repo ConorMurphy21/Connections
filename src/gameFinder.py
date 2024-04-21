@@ -27,7 +27,7 @@ def get_game_status(logfile: Path):
     return 'incomplete'
 
 
-def find_unplayed(walk_path, user_config, tried_pull=False):
+def find_unplayed(walk_path, user_config):
     first_untouched = None, None, None
     for root, dirs, files in os.walk(walk_path):
         author = Path(root).name
@@ -40,12 +40,8 @@ def find_unplayed(walk_path, user_config, tried_pull=False):
             if status == 'incomplete':
                 return author, int(file), file_to_game_config(Path(root) / file)
             if first_untouched[0] is None and status == 'untouched':
-                first_untouched = author, int(file), file_to_game_config(Path(root) / file)
-
-    if first_untouched[0] is None and not tried_pull:
-        pull_master()
-        return find_unplayed(walk_path, user_config, tried_pull=True)
-    elif first_untouched[0] is None:
+                first_untouched = author, int(file), file_to_game_config(Path(root) / file)                
+    if first_untouched[0] is None:
         print('No new games were found, try to convince your friends to make more!')
     return first_untouched
 
@@ -76,4 +72,4 @@ def find_game(args, user_config):
                     return None, None, None
             return args.author, args.number, file_to_game_config(get_game_filename(args.author, args.number))
         walk_path = get_author_folder(args.author)
-    return find_unplayed(walk_path, user_config, tried_pull=args.no_git)
+    return find_unplayed(walk_path, user_config)

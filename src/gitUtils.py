@@ -1,15 +1,11 @@
 import subprocess
 
-from src.fileUtils import DATA_PATH
+from src.fileUtils import DATA_PATH, BASE_PATH
 
-def _ensure_submodule():
-    subprocess.call(['git', 'submodule', 'update', '--init', '-q'], cwd=DATA_PATH)
+def ensure_submodule():
+    subprocess.call(['git', 'submodule', 'update', '--init', '-q'], cwd=BASE_PATH)
+    subprocess.call(['git', 'stash', '-q'] cwd=DATA_PATH)
     subprocess.call(['git', 'checkout', 'master', '-q'], cwd=DATA_PATH)
-    
-
-
-def pull_master():
-    _ensure_submodule()
     subprocess.call(['git', 'pull', '--rebase', '--autostash', '-q'], cwd=DATA_PATH)
 
 
@@ -17,7 +13,6 @@ def save_to_git(args, user_config, file):
     if args.no_git:
         return
     print('syncing game files to the cloud...')
-    _ensure_submodule()
     subprocess.call(['git', 'pull', '--rebase', '--autostash', '-q'], cwd=DATA_PATH)
     subprocess.call(['git', 'add', file], cwd=DATA_PATH)
     if args.generate:
@@ -30,4 +25,6 @@ def save_to_git(args, user_config, file):
     if 'nothing to commit' not in result:
         print('Something went wrong syncing with the cloud :(')
         print('Make sure conor gave you access to the repo')
+    else:
+        print('successfully uploaded to the cloud!')
 
