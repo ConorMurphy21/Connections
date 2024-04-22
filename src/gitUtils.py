@@ -2,6 +2,7 @@ import subprocess
 
 from src.fileUtils import DATA_PATH, BASE_PATH
 
+
 def ensure_submodule():
     subprocess.call(['git', 'submodule', 'update', '--init', '-q'], cwd=BASE_PATH)
     subprocess.call(['git', 'stash', '-q'], cwd=DATA_PATH)
@@ -27,4 +28,3 @@ def save_to_git(args, user_config, file):
         print('Make sure conor gave you access to the repo')
     else:
         print('successfully uploaded to the cloud!')
-
