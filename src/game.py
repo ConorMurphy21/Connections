@@ -254,7 +254,10 @@ class Game:
             else:
                 # HANDLE SELECT / DESELECT
                 current += ch
-                filtered = [word for word in self.notfound if word.startswith(current)]
+                # filter words that match prefix, handle prefix case by matching space
+                # to shorter prefix
+                filtered = [word for word in self.notfound if word.startswith(current) or
+                        word == current.rstrip() and current[-1] == ' ' ]
                 # query is no ambiguous (either 1 valid word or no valid words)
                 if len(filtered) <= 1:
                     addsleep = True
